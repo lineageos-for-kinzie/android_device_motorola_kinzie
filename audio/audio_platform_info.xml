@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<audio_platform_info>
+    <acdb_ids>
+    <!-- Output devices -->
+        <device name="SND_DEVICE_OUT_HEADPHONES" acdb_id="9"/>                <!-- 10 to 9  -->
+        <device name="SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES" acdb_id="9"/>    <!-- 10 to 9  -->
+        <device name="SND_DEVICE_OUT_SPEAKER" acdb_id="13"/>                  <!-- 15 to 13 -->
+        <device name="SND_DEVICE_OUT_SPEAKER_REVERSE" acdb_id="13"/>          <!-- 15 to 13 -->
+        <device name="SND_DEVICE_OUT_SPEAKER_SAFE" acdb_id="13"/>             <!-- 15 to 13 -->
+        <device name="SND_DEVICE_OUT_SPEAKER_AND_HDMI" acdb_id="18"/>         <!-- 15 to 18 -->
+        <device name="SND_DEVICE_OUT_SPEAKER_PROTECTED" acdb_id="124"/>
+        <device name="SND_DEVICE_OUT_VOLTE_NB_ANC_HANDSET" acdb_id="200"/>
+
+    <!-- Input devices -->
+        <device name="SND_DEVICE_IN_HEADSET_MIC_AEC" acdb_id="47"/>
+    </acdb_ids>
+    <bit_width_configs>
+        <device name="SND_DEVICE_OUT_SPEAKER" bit_width="24"/>
+    </bit_width_configs>
+</audio_platform_info>
+
