@@ -2,14 +2,16 @@ import init.mmi.usb.rc
 import init.qcom.power.rc
 
 on early-init
-    write /sys/block/zram0/comp_algorithm lz4
     mount debugfs debugfs /sys/kernel/debug
+
+    # Disable big cluster
+    write /sys/module/msm_performance/parameters/num_clusters 2
+    write /sys/module/msm_performance/parameters/managed_cpus 0-3
+    write /sys/module/msm_performance/parameters/managed_cpus 4-7
 
 on init
     # Symbols required for motorola blobs
     export LD_SHIM_LIBS /system/lib/libjustshoot.so|libshim_camera.so:/system/lib/libjscore.so|libshim_camera.so
-
-    write /proc/sys/vm/page-cluster 0
 
     chown system log /sys/fs/pstore/annotate-ramoops
     chmod 0640 /sys/fs/pstore/annotate-ramoops
@@ -29,6 +31,9 @@ on init
     symlink /data/tombstones /tombstones
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
+
+    # Avoid long waits for rcu grace periods
+    write /sys/kernel/rcu_expedited 1
 
 on fs
     mount_all fstab.qcom
@@ -64,13 +69,16 @@ on boot
     chown system system /sys/class/graphics/fb0/cabc_mode
 
     # update foreground cpuset now that processors are up
-    # foreground gets all CPUs except CPU 3
-    # CPU 3 is reserved for the top app
-    write /dev/cpuset/foreground/cpus 0-7
+    # reserve CPU 3 for the top app and camera daemon
+    write /dev/cpuset/foreground/cpus 0-2,4-7
     write /dev/cpuset/foreground/boost/cpus 4-7
-    write /dev/cpuset/background/cpus 0-1
+    write /dev/cpuset/background/cpus 0
     write /dev/cpuset/system-background/cpus 0-2
     write /dev/cpuset/top-app/cpus 0-7
+
+    write /proc/sys/kernel/sched_boost 1
+    write /proc/sys/vm/dirty_ratio 5
+    write /proc/sys/vm/dirty_background_ratio 1
 
     # motosh irq_disable parameter permissions
     chown root mot_tcmd /sys/module/motosh/parameters/irq_disable
@@ -199,6 +207,13 @@ on post-fs
     chmod 0660 /sys/class/capsense/fw_update
     chmod 0660 /sys/class/capsense/reset
 
+    write /sys/block/zram0/comp_algorithm lz4
+    write /sys/block/zram0/max_comp_streams 4
+
+    write /proc/sys/vm/page-cluster 0
+
+    swapon_all fstab.qcom
+
 on post-fs-data
     # Setup correct permissions for dbvc and atvc
     mkdir /pds/public/atvc 0770 mot_atvc shell
@@ -217,6 +232,7 @@ on post-fs-data
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
     rm /data/system/perfd/default_values
+    start perfd
 
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
@@ -291,7 +307,10 @@ on post-fs-data
 on property:sys.boot_completed=1
     setprop sys.io.scheduler bfq
 
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+#    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+#    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
+    write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,55296,80640"
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
 
 on property:vold.decrypt=trigger_restart_framework

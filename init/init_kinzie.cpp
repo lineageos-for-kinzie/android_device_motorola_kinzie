@@ -60,7 +60,7 @@ void vendor_load_properties()
     if (sku == "XT1580") {
 	property_set("ro.product.name", "Moto X Force");
         property_set("ro.product.display", "Moto X Force");
-        property_set("ro.telephony.default_network", "9");
+        property_set("ro.telephony.default_network", "9,0");
         property_set("telephony.lteOnCdmaDevice", "0");
         // Region specifics
         if ((car == "reteu") || (car == "retgb")) {
@@ -87,23 +87,23 @@ void vendor_load_properties()
             property_set("ro.build.description", "kinzie_reteu-user 6.0 MPK24.78-8 10 release-keys");
             property_set("ro.build.fingerprint", "motorola/kinzie_reteu/kinzie:6.0/MPK24.78-8/10:user/release-keys");
         }
-    } else if (sku == "XT1585") {
+    } else if ((sku == "XT1585") || (sku == "MOTXT1585")) {
         /* US */
         setSsim();
 	property_set("ro.product.name", "Droid Turbo 2");
         property_set("ro.product.display", "Droid Turbo 2");
         property_set("ro.ril.force_eri_from_xml", "true");
         property_set("ro.telephony.get_imsi_from_sim", "true");
-        property_set("ro.telephony.default_network", "10");
+        property_set("ro.telephony.default_network", "10,10");
         property_set("telephony.lteOnCdmaDevice", "1");
-        property_set("ro.build.description", "clark_retus-user 6.0 MPHS24.49-18-3 3 release-keys");
-        property_set("ro.build.fingerprint", "motorola/clark_retus/clark:6.0/MPHS24.49-18-3/3:user/release-keys");
+        property_set("ro.build.description", "kinzie_verizon-user 6.0 MCK24.78-13.11 11 release-keys");
+        property_set("ro.build.fingerprint", "motorola/kinzie_verizon/kinzie:6.0/MCK24.78-13.11/11:user/release-keys");
     } else if (sku == "XT1581") {
         /* China */
         setMsim();
 	property_set("ro.product.name", "Moto X 極");
 	property_set("ro.product.display", "Moto X Force");
-        property_set("ro.telephony.default_network", "22");
+        property_set("ro.telephony.default_network", "22,20");
         property_set("telephony.lteOnCdmaDevice", "1");
         property_set("persist.radio.mcfg_enabled", "1");
         property_set("persist.radio.force_on_dc", "true");
@@ -179,4 +179,15 @@ static void setMsim(void)
     property_set("ro.media.enc.aud.fileformat", "amr");
     property_set("ro.media.enc.aud.codec", "amrnb");
     property_set("ril.subscription.types", "NV,RUIM");
+    property_set("persist.ims.volte", "true");
+    property_set("persist.ims.vt", "false");
+    property_set("persist.ims.vt.epdg", "false");
+    property_set("persist.ims.rcs", "false");
+    property_set("ro.radio.imei.sv", "4");
+    property_set("persist.radio.call.audio.output", "0");
+    property_set("persist.radio.videopause.mode", "0");
+    property_set("persist.vt.supported", "0");
+    property_set("persist.eab.supported", "0");
+    property_set("persist.rcs.supported", "0");
+    property_set("persist.rcs.presence.provision", "0");
 }

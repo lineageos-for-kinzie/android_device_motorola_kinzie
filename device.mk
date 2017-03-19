@@ -96,13 +96,6 @@ PRODUCT_PACKAGES += \
     Gello
 
 # GPS
-#PRODUCT_PACKAGES += \
-#    gps.msm8994
-
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
-
-# GPS
 PRODUCT_PACKAGES += \
     gps.msm8994 \
     flp.conf \
@@ -252,7 +245,7 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
-ifneq ($(TARGET_BUILD_VARIANT),user,userdebug,eng)
+ifneq ($(TARGET_BUILD_VARIANT),userdebug,eng)
   ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
   ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 endif

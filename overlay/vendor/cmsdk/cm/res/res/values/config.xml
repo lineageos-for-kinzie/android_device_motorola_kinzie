@@ -28,6 +28,21 @@
 
          For example, a device support pulsating, RGB notification and
          battery LEDs would set this config to 11. -->
-    <integer name="config_deviceLightCapabilities" translatable="false">3</integer>
+    <integer name="config_deviceLightCapabilities" translatable="false">0</integer>
+
+    <!-- LiveDisplay values-->
+    <integer name="config_dayColorTemperature">8400</integer>
+    <integer name="config_nightColorTemperature">5200</integer>
+    <integer name="config_outdoorAmbientLux">10000</integer>
+    <integer name="config_outdoorAmbientLuxHysteresis">800</integer>
+
+    <!-- These values should map to the true min and max
+         that the backend is capable of adjusting to. This
+         is more important when using the ColorBalance mode,
+         as the discrete adjustment is interpolated between
+         this range (with config_dayColorTemperature at zero) -->
+    <integer name="config_minColorTemperature">1000</integer>
+    <integer name="config_maxColorTemperature">12000</integer>
+    <bool name="config_defaultCABC">false</bool>
 
 </resources>

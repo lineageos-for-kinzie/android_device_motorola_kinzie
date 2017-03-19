@@ -20,6 +20,7 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 LOCAL_RESOURCE_DIR := \
     $(LOCAL_PATH)/res \
+    $(LOCAL_PATH)/../../../../packages/resources/devicesettings/res \
     frameworks/support/v14/preference/res \
     frameworks/support/v7/appcompat/res \
     frameworks/support/v7/preference/res \
@@ -38,3 +39,4 @@ include frameworks/base/packages/SettingsLib/common.mk
 include $(BUILD_PACKAGE)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
+

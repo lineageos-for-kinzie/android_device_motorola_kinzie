@@ -76,6 +76,10 @@ public class SensorHelper {
         return mSensorManager.getDefaultSensor(SENSOR_TYPE_MMI_FLAT_UP, true);
     }
 
+    public Sensor getProximitySensor() {
+        return mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY, true);
+    }
+
     public Sensor getIrGestureSensor() {
         return mSensorManager.getDefaultSensor(SENSOR_TYPE_MMI_IR_GESTURE, true);
     }

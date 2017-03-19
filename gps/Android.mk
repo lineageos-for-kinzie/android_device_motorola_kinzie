@@ -16,6 +16,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),clark)
+ifeq ($(TARGET_DEVICE),kinzie)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #set -e
-export DEVICE=clark
+export DEVICE=kinzie
 export VENDOR=motorola
 
 # Load extractutils and do some sanity checks

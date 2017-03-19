@@ -11,7 +11,7 @@
 		<resource name="tsens_tz_sensor4"  type="tz">/sys/class/thermal/thermal_zone8</resource>
 		<resource name="tsens_tz_sensor5"  type="tz">/sys/class/thermal/thermal_zone9</resource>
 
-		<resource name="tsens_tz_sensor6"  type="tz">/sys/class/thermal/thermal_zone10</resource>  <!-- cpu7 -->
+		<resource name="tsens_tz_sensor6"  type="tz">/sys/class/thermal/thermal_zone10</resource> <!-- cpu7 -->
 		<resource name="tsens_tz_sensor7"  type="tz">/sys/class/thermal/thermal_zone11</resource> <!-- cpu0 -->
 		<resource name="tsens_tz_sensor8"  type="tz">/sys/class/thermal/thermal_zone12</resource> <!-- cpu1 -->
 		<resource name="tsens_tz_sensor9"  type="tz">/sys/class/thermal/thermal_zone13</resource> <!-- cpu2 -->
@@ -40,6 +40,7 @@
 		<resource name="THRM_53-1" type="tz">/sys/class/thermal/thermal_zone32</resource>
 		<resource name="THRM_53-2" type="tz">/sys/class/thermal/thermal_zone33</resource>
 		<resource name="THRM_53-3" type="tz">/sys/class/thermal/thermal_zone34</resource>
+
 
 		<resource name="temp-core" type="union">
 			<resource name="msm_therm" />
@@ -319,7 +320,7 @@
 		<threshold>
 			<mitigation name="modem" level="off" />
 		</threshold>
-		<threshold trigger="49700" clear="49300">
+		<threshold trigger="55500" clear="55000">
 			<mitigation name="modem" level="1" />
 		</threshold>
 	</configuration>
@@ -329,42 +330,47 @@
 		<threshold>
 			<mitigation name="cpu-a53" level="off" />
 		</threshold>
-		<threshold trigger="52600" clear="52000">
+		<threshold trigger="48900" clear="47700">
 			<mitigation name="cpu-a53" level="1" />
 		</threshold>
-		<threshold trigger="53600" clear="53200">
+		<threshold trigger="51400" clear="50200">
+			<mitigation name="cpu-a53" level="2" />
+		</threshold>
+		<threshold trigger="52600" clear="52000">
 			<mitigation name="cpu-a53" level="3" />
 		</threshold>
-		<threshold trigger="55500" clear="54000">
+		<threshold trigger="53600" clear="43200">
 			<mitigation name="cpu-a53" level="4" />
 		</threshold>
-		<threshold trigger="55500" clear="55000">
+		<threshold trigger="54500" clear="54000">
 			<mitigation name="cpu-a53" level="5" />
 		</threshold>
-		<threshold trigger="55900" clear="55500">
+		<threshold trigger="55500" clear="55000">
 			<mitigation name="cpu-a53" level="6" />
 		</threshold>
+		<threshold trigger="55900" clear="55500">
+			<mitigation name="cpu-a53" level="8" />
+		</threshold>
 		<threshold trigger="56300" clear="55900">
-			<mitigation name="cpu-a53" level="7" />
+			<mitigation name="cpu-a53" level="9" />
 		</threshold>
 		<threshold trigger="56800" clear="56300">
-			<mitigation name="cpu-a53" level="8" />
+			<mitigation name="cpu-a53" level="10" />
 		</threshold>
 	</configuration>
 
-	<!-- CPU A57 CLUSTER -->
 	<configuration sensor="temp-cluster-a53">
 		<threshold>
 			<mitigation name="cpu-a53" level="off" />
 		</threshold>
-		<threshold trigger="78" clear="70">
+		<threshold trigger="75" clear="68">
 			<mitigation name="cpu-a53" level="2" />
 		</threshold>
-		<threshold trigger="84" clear="80">
+		<threshold trigger="78" clear="73">
 			<mitigation name="cpu-a53" level="4" />
 		</threshold>
 		<threshold trigger="120" clear="100">
-			<mitigation name="cpu-a53" level="9" />
+			<mitigation name="cpu-a53" level="11" />
 		</threshold>
 	</configuration>
 
@@ -373,42 +379,44 @@
 		<threshold>
 			<mitigation name="cpu-a57" level="off" />
 		</threshold>
-		<threshold trigger="52900" clear="51700">
-			<mitigation name="cpu-a57" level="1" />
+		<threshold trigger="43000" clear="40000">
+			<mitigation name="cpu-a57" level="7" />
 		</threshold>
-		<threshold trigger="54200" clear="52900">
-			<mitigation name="cpu-a57" level="3" />
-		</threshold>
-		<threshold trigger="55400" clear="54200">
-			<mitigation name="cpu-a57" level="6" />
-		</threshold>
-		<threshold trigger="56000" clear="55400">
+		<threshold trigger="48900" clear="47700">
 			<mitigation name="cpu-a57" level="9" />
 		</threshold>
-		<threshold trigger="56600" clear="56000">
-			<mitigation name="cpu-a57" level="10" />
-		</threshold>
-		<threshold trigger="57600" clear="57200">
-			<mitigation name="cpu-a57" level="11" />
-		</threshold>
-		<threshold trigger="58500" clear="58000">
-			<mitigation name="cpu-a57" level="12" />
+		<threshold trigger="50200" clear="48900">
+			<mitigation name="cpu-a57" level="13" />
 		</threshold>
 	</configuration>
 
-	<!-- CPU A57 CLUSTER -->
+	<configuration sensor="pm8994_tz">
+		<threshold>
+			<mitigation name="hotplug-a57" level="off" />
+		</threshold>
+		<threshold trigger="43000" clear="40000">
+			<mitigation name="hotplug-a57" level="2" />
+		</threshold>
+		<threshold trigger="48900" clear="47700">
+			<mitigation name="hotplug-a57" level="3" />
+		</threshold>
+		<threshold trigger="50200" clear="48900">
+			<mitigation name="hotplug-a57" level="4" />
+		</threshold>
+	</configuration>
+
 	<configuration sensor="temp-cluster-a57">
 		<threshold>
 			<mitigation name="cpu-a57" level="off" />
 		</threshold>
-		<threshold trigger="78" clear="70">
-			<mitigation name="cpu-a57" level="8" />
+		<threshold trigger="75" clear="68">
+			<mitigation name="cpu-a57" level="9" />
 		</threshold>
-		<threshold trigger="84" clear="80">
-			<mitigation name="cpu-a57" level="10" />
+		<threshold trigger="78" clear="73">
+			<mitigation name="cpu-a57" level="11" />
 		</threshold>
 		<threshold trigger="120" clear="100">
-			<mitigation name="cpu-a57" level="13" />
+			<mitigation name="cpu-a57" level="14" />
 		</threshold>
 	</configuration>
 </thermanager>
