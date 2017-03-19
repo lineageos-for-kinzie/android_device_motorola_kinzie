@@ -177,6 +177,11 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     $(DEVICE_PATH)/sepolicy
 
+# TWRP Support - Optional
+ifeq ($(WITH_TWRP),true)
+-include device/motorola/kinzie/twrp.mk
+endif
+
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_kinzie
@@ -195,19 +200,3 @@ TARGET_USES_WCNSS_MAC_ADDR_REV   := true
 WIFI_DRIVER_FW_PATH_STA          := "sta"
 WIFI_DRIVER_FW_PATH_AP           := "ap"
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
-
-# TWRP definitions
-RECOVERY_VARIANT := twrp
-# BOARD_HAS_FLIPPED_SCREEN := true
-TW_THEME := portrait_hdpi
-TW_NEW_ION_HEAP := true
-TW_INCLUDE_CRYPTO := true
-TW_NO_SCREEN_BLANK := true
-TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
-TARGET_RECOVERY_PIXEL_FORMAT := RGBA_8888
-BOARD_SUPPRESS_SECURE_ERASE := true
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TARGET_RECOVERY_QCOM_RTC_FIX := true
-TW_EXTRA_LANGUAGES := true
-# TARGET_CRYPTFS_HW_PATH += vendor/qcom/opensource/cryptfs_hw
-TARGET_RECOVERY_FSTAB = $(DEVICE_PATH)/recovery/twrp.fstab
