@@ -1,5 +1,5 @@
 #
-# System Properties for Moto X Pure
+# System Properties for Moto X Force
 #
 
 # Audio
@@ -20,7 +20,7 @@ persist.audio.calfile4=/etc/acdbdata/Hdmi_cal.acdb
 persist.audio.calfile5=/etc/acdbdata/Headset_cal.acdb
 persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb
 persist.audio.dualmic.config=endfire
-persist.audio.fluence.speaker=false
+persist.audio.fluence.speaker=true
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicecomm=true
 persist.audio.fluence.voicerec=false
@@ -34,7 +34,7 @@ bluetooth.hfp.client=1
 qcom.bluetooth.soc=rome
 qcom.bt.le_dev_pwr_class=1
 ro.bluetooth.hfp.ver=1.6
-persist.bt.enableAptXHD=true
+# persist.bt.enableAptXHD=true
 
 # CABL
 ro.qualcomm.cabl=0
@@ -52,7 +52,7 @@ persist.debug.coresight.config=stm-events
 
 # Dalvik
 dalvik.vm.boot-dex2oat-threads=4
-dalvik.vm.dex2oat-threads=2
+dalvik.vm.dex2oat-threads=4
 dalvik.vm.image-dex2oat-threads=4
 
 # DRM
@@ -124,6 +124,7 @@ ro.com.google.clientidbase.ms=android-motorola
 ro.com.google.clientidbase.yt=android-motorola
 
 # Radio
+
 net.tcp.2g_init_rwnd=10
 net.tcp.delack.default=1
 net.tcp.delack.wifi=20
@@ -150,6 +151,7 @@ persist.radio.no_wait_for_card=1
 persist.radio.oem_ind_to_both=0
 persist.radio.relay_oprt_change=1
 persist.sys.qc.sub.rdump.on=1
+persist.cne.feature=1
 rild.libargs=-d /dev/smd0
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 ro.data.large_tcp_window_size=true
@@ -195,9 +197,6 @@ persist.sys.usb.config=mtp,adb
 #Revert LCD
 ro.panel.mountflip=3
 
-# Dexopt
-# ro.sys.fw.dex2oat_thread_count=4
-
 # VoLTE
 persist.dbg.ims_volte_enable=1
 persist.dbg.volte_avail_ovr=1
@@ -206,16 +205,16 @@ persist.data.iwlan.enable=true
 persist.dbg.wfc_avail_ovr=0
 
 # IMS properties
-net.lte.volte_call_capable=true
-persist.ims.enableADBLogs=1
-persist.ims.enableDebugLogs=1
-persist.radio.calls.on.ims=true
-persist.radio.csvt.enabled=false
-persist.radio.jbims=1
-persist.radio.ROTATION_ENABLE=1
-persist.radio.VT_ENABLE=1
-persist.radio.VT_HYBRID_ENABLE=1
-persist.radio.VT_USE_MDM_TIME=0
-DEVICE_PROVISIONED=1
-ril.subscription.types=NV,RUIM
-persist.volte_enalbed_by_hw=1
+#net.lte.volte_call_capable=true
+#persist.ims.enableADBLogs=1
+#persist.ims.enableDebugLogs=1
+#persist.radio.calls.on.ims=true
+#persist.radio.csvt.enabled=false
+#persist.radio.jbims=1
+#persist.radio.ROTATION_ENABLE=1
+#persist.radio.VT_ENABLE=1
+#persist.radio.VT_HYBRID_ENABLE=1
+#persist.radio.VT_USE_MDM_TIME=0
+#DEVICE_PROVISIONED=1
+#ril.subscription.types=NV,RUIM
+#persist.volte_enalbed_by_hw=1

@@ -95,7 +95,7 @@
 	<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia3" value="0" />
 	<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia4" value="0" />
 	<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia5" value="0" />
-	<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia7" value="0" />
+	<ctl name="SLIMBUS_0_RX eAudio Mixer MultiMedia7" value="0" />
 	<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia10" value="0" />
 	<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia11" value="0" />
 	<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia12" value="0" />
@@ -789,7 +789,7 @@
 
 	<path name="voice-speaker">
 		<ctl name="SLIMTX5 Input 1" value="AIF1RX1" />
-		<ctl name="VOC_EXT_EC MUX" value="SLIMBUS_1_TX" />
+		<ctl name="VOC_EXT_EC MUX" value="SLIM_RX" />
 		<path name="speaker" />
 	</path>
 
