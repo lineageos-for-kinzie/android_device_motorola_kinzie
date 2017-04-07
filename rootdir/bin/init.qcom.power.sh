@@ -72,7 +72,6 @@ write /sys/devices/system/cpu/cpu4/online 1
 # Setup Big interactive settings
 write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor interactive
 restorecon -R /sys/devices/system/cpu # must restore after interactive
-
 write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor interactive
 write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 633600
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 45
@@ -109,6 +108,7 @@ write /sys/devices/system/cpu/cpu4/core_ctl/not_preferred "0 1 1 1" # Make sure 
 write /sys/devices/system/cpu/cpu5/online 1
 write /sys/devices/system/cpu/cpu6/online 1
 write /sys/devices/system/cpu/cpu7/online 1
+restorecon_recursive /sys/devices/system/cpu # must restore after online
 
 # Available Freqs in stock kernel
 # Little: 384000 460800 600000 672000 768000 864000 960000 1248000 1344000 1478400 1555200

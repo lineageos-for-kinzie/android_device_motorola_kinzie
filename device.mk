@@ -243,8 +243,3 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
-
-ifneq ($(TARGET_BUILD_VARIANT),userdebug,eng)
-  ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
-  ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
-endif

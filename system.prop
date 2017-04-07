@@ -187,12 +187,12 @@ persist.debug.wfd.enable=1
 persist.sys.wfd.virtual=0
 
 #ADB
-ro.secure=0
-persist.service.adb.enable=1
-persist.service.debuggable=1
-ro.adb=1
-ro.debuggable=1
-persist.sys.usb.config=mtp,adb
+#ro.secure=0
+#persist.service.adb.enable=1
+#persist.service.debuggable=1
+#ro.adb=1
+#ro.debuggable=1
+#persist.sys.usb.config=mtp,adb
 
 #Revert LCD
 ro.panel.mountflip=3
