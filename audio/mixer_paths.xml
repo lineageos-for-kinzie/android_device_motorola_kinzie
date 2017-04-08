@@ -789,7 +789,7 @@
 
 	<path name="voice-speaker">
 		<ctl name="SLIMTX5 Input 1" value="AIF1RX1" />
-		<ctl name="VOC_EXT_EC MUX" value="SLIMBUS_1_TX" />
+		<ctl name="VOC_EXT_EC MUX" value="SLIMBUS_RX" />
 		<path name="speaker" />
 	</path>
 
