@@ -72,13 +72,13 @@ on boot
     # reserve CPU 3 for the top app and camera daemon
     write /dev/cpuset/foreground/cpus 0-2,4-7
     write /dev/cpuset/foreground/boost/cpus 4-7
-    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/background/cpus 0-2
     write /dev/cpuset/system-background/cpus 0-2
     write /dev/cpuset/top-app/cpus 0-7
 
-    write /proc/sys/kernel/sched_boost 1
-    write /proc/sys/vm/dirty_ratio 5
-    write /proc/sys/vm/dirty_background_ratio 1
+#    write /proc/sys/kernel/sched_boost 1
+#    write /proc/sys/vm/dirty_ratio 5
+#    write /proc/sys/vm/dirty_background_ratio 1
 
     # motosh irq_disable parameter permissions
     chown root mot_tcmd /sys/module/motosh/parameters/irq_disable
@@ -305,7 +305,7 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
 on property:sys.boot_completed=1
-    setprop sys.io.scheduler cfq
+    setprop sys.io.scheduler "bfq"
 
 #    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
 #    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
@@ -594,9 +594,13 @@ service iop /system/bin/iop
     group root
     writepid /dev/cpuset/system-background/tasks
 
-# OSS thermal management
-service thermanager /system/bin/thermanager /system/etc/thermanager.xml
-    class late_start
+service thermal-engine /system/bin/thermal-engine
+    class main
     user root
     group root
     writepid /dev/cpuset/system-background/tasks
+
+service thermal-com /system/bin/thermal-engine --minimode
+    class main
+    user root
+    disabled

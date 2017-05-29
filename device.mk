@@ -90,10 +90,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/releasetools/extract_firmware.sh:install/bin/extract_firmware.sh
 
-# Gello
-PRODUCT_PACKAGES += \
-    Gello
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8994 \
@@ -223,10 +219,14 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermanager.xml:system/etc/thermanager.xml
+    $(LOCAL_PATH)/configs/thermal-engine-kinzie.conf:system/etc/thermal-engine-kinzie.conf \
+    $(LOCAL_PATH)/configs/thermal-engine-kinzie.conf:system/etc/thermal-engine-kinzie2pc.conf \
+    $(LOCAL_PATH)/configs/thermal-engine-kinzie.conf:system/etc/thermal-engine-kinziep3.conf 
+#    $(LOCAL_PATH)/configs/thermanager.xml:system/etc/thermanager.xml
 
-PRODUCT_PACKAGES += \
-    thermanager
+
+#PRODUCT_PACKAGES += \
+#    thermanager
 
 # Wifi
 PRODUCT_COPY_FILES += \
@@ -243,3 +243,6 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
+
+  ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
+  ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0

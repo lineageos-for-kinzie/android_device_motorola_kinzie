@@ -26,7 +26,8 @@ on moto-charger
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
     setprop sys.usb.config charging
     start batt_health
-    start thermanager
+    start thermal-com
+#    start thermanager
 
 on boot
     # Per-process reclaim

@@ -48,7 +48,7 @@ camera_module_t HAL_MODULE_INFO_SYM = {
          .module_api_version = CAMERA_MODULE_API_VERSION_1_0,
          .hal_api_version = HARDWARE_HAL_API_VERSION,
          .id = CAMERA_HARDWARE_MODULE_ID,
-         .name = "Moto X Pure Camera Wrapper",
+         .name = "Moto X Force Camera Wrapper",
          .author = "The CyanogenMod Project",
          .methods = &camera_module_methods,
          .dso = NULL, /* remove compilation warnings */
@@ -95,7 +95,7 @@ static int camera_device_open(const hw_module_t *module, const char *name,
         return -EINVAL;
     }
 
-    while (cameraretry < 5) {
+    while (cameraretry < 10) {
          rv = gVendorModule->common.methods->open(
                  (const hw_module_t*)gVendorModule, name,
                  device);
@@ -104,7 +104,7 @@ static int camera_device_open(const hw_module_t *module, const char *name,
 
          cameraretry++;
          ALOGV("%s: open failed - retrying attempt %d",__FUNCTION__, cameraretry);
-         sleep(2);
+         sleep(4);
     }
 
     if (rv)

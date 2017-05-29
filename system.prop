@@ -22,11 +22,11 @@ persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb
 persist.audio.dualmic.config=endfire
 persist.audio.fluence.speaker=false
 persist.audio.fluence.voicecall=true
-persist.audio.fluence.voicecomm=true
-persist.audio.fluence.voicerec=false
+persist.audio.fluence.voicecomm=false
+persist.audio.fluence.voicerec=true
 ro.config.vc_call_vol_steps=8
 ro.qc.sdk.audio.ssr=false
-ro.qc.sdk.audio.fluencetype=fluence
+ro.qc.sdk.audio.fluencetype=none
 ro.audio.flinger_standbytime_ms=300
 
 # Bluetooth
@@ -192,7 +192,7 @@ persist.service.adb.enable=1
 #persist.service.debuggable=1
 ro.adb=1
 #ro.debuggable=1
-#persist.sys.usb.config=mtp,adb
+persist.sys.usb.config=mtp,adb
 
 #Revert LCD
 ro.panel.mountflip=3
@@ -205,16 +205,16 @@ persist.data.iwlan.enable=true
 persist.dbg.wfc_avail_ovr=0
 
 # IMS properties
-#net.lte.volte_call_capable=true
-#persist.ims.enableADBLogs=1
-#persist.ims.enableDebugLogs=1
-#persist.radio.calls.on.ims=true
-#persist.radio.csvt.enabled=false
-#persist.radio.jbims=1
-#persist.radio.ROTATION_ENABLE=1
-#persist.radio.VT_ENABLE=1
-#persist.radio.VT_HYBRID_ENABLE=1
-#persist.radio.VT_USE_MDM_TIME=0
-#DEVICE_PROVISIONED=1
-#ril.subscription.types=NV,RUIM
-#persist.volte_enalbed_by_hw=1
+net.lte.volte_call_capable=true
+persist.ims.enableADBLogs=1
+persist.ims.enableDebugLogs=1
+persist.radio.calls.on.ims=true
+persist.radio.csvt.enabled=false
+persist.radio.jbims=1
+persist.radio.ROTATION_ENABLE=1
+persist.radio.VT_ENABLE=1
+persist.radio.VT_HYBRID_ENABLE=1
+persist.radio.VT_USE_MDM_TIME=0
+DEVICE_PROVISIONED=1
+ril.subscription.types=NV,RUIM
+persist.volte_enalbed_by_hw=1
