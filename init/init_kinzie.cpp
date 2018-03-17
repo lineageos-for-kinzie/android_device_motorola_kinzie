@@ -29,6 +29,8 @@
 
 #include <string.h>
 #include <stdlib.h>
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/_system_properties.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -38,6 +40,17 @@
 static void setSsim(void);
 static void setMsim(void);
 static void setLatMsim(void);
+
+void property_override(char const prop[], char const value[])
+{
+    prop_info *pi;
+
+    pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+}
 
 void vendor_load_properties()
 {
@@ -52,13 +65,12 @@ void vendor_load_properties()
     sku = property_get("ro.boot.hardware.sku");
     car = property_get("ro.boot.carrier");
 
-    property_set("ro.product.model", sku.c_str());
-
-    property_set("ro.build.product", "kinzie");
-    property_set("ro.product.device", "kinzie");
+    property_override("ro.product.model", sku.c_str());
+    property_override("ro.build.product", "kinzie");
+    property_override("ro.product.device", "kinzie");
 
     if (sku == "XT1580") {
-	property_set("ro.product.name", "Moto X Force");
+	property_override("ro.product.name", "Moto X Force");
         property_set("ro.product.display", "Moto X Force");
         property_set("ro.telephony.default_network", "9,10");
         property_set("telephony.lteOnCdmaDevice", "0");
@@ -66,42 +78,42 @@ void vendor_load_properties()
         if ((car == "reteu") || (car == "retgb")) {
             // EU
             setSsim();
-            property_set("ro.build.description", "kinzie_reteu-user 6.0 MPK24.78-8 10 release-keys");
-            property_set("ro.build.fingerprint", "motorola/kinzie_reteu/kinzie:6.0/MPK24.78-8/10:user/release-keys");
+            property_override("ro.build.description", "kinzie_reteu-user 6.0 MPK24.78-8 10 release-keys");
+            property_override("ro.build.fingerprint", "motorola/kinzie_reteu/kinzie:6.0/MPK24.78-8/10:user/release-keys");
             property_set("ro.fsg-id", "emea");
         } else if ((car == "retbr") || (car == "retla") || (car == "tefbr") || (car == "timbr")) {
             /* Brazil -- LATAM*/
             setLatMsim();
             property_set("ro.build.version.full","Blur_Version.24.11.8.kinzie_retla_ds.retla.en.01");
-            property_set("ro.build.description", "kinzie_retla_ds-user 6.0 MPK24.78-8 9 release-keys");
-            property_set("ro.build.fingerprint", "motorola/kinzie_retla_ds/kinzie_uds:6.0/MPK24.78-8/9:user/release-keys");
+            property_override("ro.build.description", "kinzie_retla_ds-user 6.0 MPK24.78-8 9 release-keys");
+            property_override("ro.build.fingerprint", "motorola/kinzie_retla_ds/kinzie_uds:6.0/MPK24.78-8/9:user/release-keys");
         } else if (car == "retmx") {
             /* Mexico */
             setLatMsim();
             property_set("ro.build.version.full","Blur_Version.24.11.8.kinzie_retmx_ds.retla.en.01");
-            property_set("ro.build.description", "kinzie_retmx_ds-user 6.0 MPK24.78-8 8 release-keys");
-            property_set("ro.build.fingerprint", "motorola/kinzie_retmx_ds/kinzie_uds:6.0/MPK24.78-8/8:user/release-keys");
+            property_override("ro.build.description", "kinzie_retmx_ds-user 6.0 MPK24.78-8 8 release-keys");
+            property_override("ro.build.fingerprint", "motorola/kinzie_retmx_ds/kinzie_uds:6.0/MPK24.78-8/8:user/release-keys");
         } else {
             //default to EU
             setSsim();
-            property_set("ro.build.description", "kinzie_reteu-user 6.0 MPK24.78-8 10 release-keys");
-            property_set("ro.build.fingerprint", "motorola/kinzie_reteu/kinzie:6.0/MPK24.78-8/10:user/release-keys");
+            property_override("ro.build.description", "kinzie_reteu-user 6.0 MPK24.78-8 10 release-keys");
+            property_override("ro.build.fingerprint", "motorola/kinzie_reteu/kinzie:6.0/MPK24.78-8/10:user/release-keys");
         }
     } else if ((sku == "XT1585") || (sku == "MOTXT1585")) {
         /* US */
         setSsim();
-	property_set("ro.product.name", "Droid Turbo 2");
+	property_override("ro.product.name", "Droid Turbo 2");
         property_set("ro.product.display", "Droid Turbo 2");
         property_set("ro.ril.force_eri_from_xml", "true");
         property_set("ro.telephony.get_imsi_from_sim", "true");
         property_set("ro.telephony.default_network", "10,10");
         property_set("telephony.lteOnCdmaDevice", "1");
-        property_set("ro.build.description", "kinzie_verizon-user 6.0 MCK24.78-13.11 11 release-keys");
-        property_set("ro.build.fingerprint", "motorola/kinzie_verizon/kinzie:6.0/MCK24.78-13.11/11:user/release-keys");
+        property_override("ro.build.description", "kinzie_verizon-user 6.0 MCK24.78-13.11 11 release-keys");
+        property_override("ro.build.fingerprint", "motorola/kinzie_verizon/kinzie:6.0/MCK24.78-13.11/11:user/release-keys");
     } else if (sku == "XT1581") {
         /* China */
         setMsim();
-	property_set("ro.product.name", "Moto X 極");
+	property_override("ro.product.name", "Moto X 極");
 	property_set("ro.product.display", "Moto X Force");
         property_set("ro.telephony.default_network", "22,20");
         property_set("telephony.lteOnCdmaDevice", "1");
@@ -114,8 +126,8 @@ void vendor_load_properties()
         property_set("ro.telephony.default_cdma_sub", "0");
         property_set("ril.subscription.types", "RUIM");
         property_set("persist.radio.force_get_pref", "1");
-        property_set("ro.build.description", "kinzie_retcn_ds-user 5.1.1 LPK23.229-1 1 release-keys");
-        property_set("ro.build.fingerprint", "motorola/kinzie_retcn_ds/kinzie_uds:5.1.1/LPK23.229-1/1:user/release-keys");
+        property_override("ro.build.description", "kinzie_retcn_ds-user 5.1.1 LPK23.229-1 1 release-keys");
+        property_override("ro.build.fingerprint", "motorola/kinzie_retcn_ds/kinzie_uds:5.1.1/LPK23.229-1/1:user/release-keys");
     }
 }
 static void setSsim(void)
